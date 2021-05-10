@@ -6,3 +6,7 @@
 	path = src/modules/vsf-cache-varnish
 	url = https://github.com/new-fantastic/vsf-cache-varnish.git
 	branch = master
+[submodule "src/themes/adn"]
+	path = src/themes/adn
+	url = https://github.com/hqTlbs/vsf-default.git
+	branch = master
