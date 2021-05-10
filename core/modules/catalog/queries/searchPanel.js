@@ -6,6 +6,10 @@ export function prepareQuickSearchQuery (queryText) {
 
   searchQuery = searchQuery
     .setSearchText(queryText)
+    .applySort({
+      field: 'position_for_sort',
+      options: 'asc'
+    })
     .applyFilter({ key: 'visibility', value: { 'in': [3, 4] } })
     .applyFilter({ key: 'status', value: { 'in': [0, 1] } })/* 2 = disabled, 3 = out of stock */
 
