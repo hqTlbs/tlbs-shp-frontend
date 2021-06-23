@@ -96,6 +96,7 @@
     "vue-router": "3.1.6",
     "vue-server-renderer": "^2.6.11",
     "vuelidate": "^0.7.5",
+    "vuetify": "^2.5.4",
     "vuex": "^3.1.2",
     "vuex-router-sync": "^5.0.0"
   },
@@ -122,6 +123,7 @@
     "css-loader": "^1.0.0",
     "cypress": "^3.1.5",
     "d3-dsv": "^1.0.8",
+    "deepmerge": "^4.2.2",
     "detect-installed": "^2.0.4",
     "empty-dir": "^1.0.0",
     "eslint": "^5.0.0",
@@ -154,6 +156,7 @@
     "postcss-loader": "^3.0.0",
     "print-message": "^2.1.0",
     "rimraf": "^2.6.0",
+    "sass": "~1.32",
     "sass-loader": "^7.1.0",
     "shelljs": "^0.8.1",
     "sw-precache-webpack-plugin": "^0.11.5",

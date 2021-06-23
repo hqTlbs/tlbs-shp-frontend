@@ -1,6 +1,7 @@
 import { Store } from 'vuex'
 import RootState from '@vue-storefront/core/types/RootState'
 import Vue from 'vue'
+import vuetify from './plugins/vuetify.js'
 import { isServer } from '@vue-storefront/core/helpers'
 import EventBus from '@vue-storefront/core/compatibility/plugins/event-bus'
 import i18n from '@vue-storefront/i18n'
@@ -89,13 +90,14 @@ const createApp = async (ssrContext, config, storeCode = null): Promise<{app: Vu
     router: routerProxy,
     store,
     i18n,
+    vuetify,
     render: h => h(themeEntry)
   }
 
   const apolloProvider = await getApolloProvider()
   if (apolloProvider) Object.assign(vueOptions, { provider: apolloProvider })
 
-  const app = new Vue(vueOptions)
+  const app = new Vue(vueOptions).$mount('#app')
 
   const appContext = {
     isServer,

@@ -17,8 +17,10 @@ export const Breadcrumbs = {
           ...routes
         ]
       }
-
-      return routes
+      return [
+        ...routes,
+        { name: this.activeRoute || this.getBreadcrumbsCurrent, route_link: null }
+      ]
     },
     current () {
       return this.activeRoute || this.getBreadcrumbsCurrent

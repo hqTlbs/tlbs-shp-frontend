@@ -95,7 +95,7 @@ export default {
       'node_modules',
       path.resolve(__dirname, themesRoot)
     ],
-    extensions: ['.js', '.vue', '.gql', '.graphqls', '.ts'],
+    extensions: ['.mjs', '.js', '.vue', '.gql', '.graphqls', '.ts'],
     alias: {
       // Main aliases
       'config': path.resolve(__dirname, './config.json'),
