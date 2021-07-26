@@ -188,6 +188,11 @@ const actions: ActionTree<CategoryState, RootState> = {
     commit(types.CATEGORY_SET_CATEGORY_FILTERS, { category, filters: resultFilters })
   },
 
+  async changeKeywordSearch ({ dispatch }, searchKeyword) {
+    let currentQuery = router.currentRoute[products.routerFiltersSource]
+    await dispatch('changeRouterFilterParameters', {q: searchKeyword})
+  },
+
   async switchSearchFilters ({ dispatch }, filterVariants: FilterVariant[] = []) {
     let currentQuery = router.currentRoute[products.routerFiltersSource]
     filterVariants.forEach(filterVariant => {
