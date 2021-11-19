@@ -99,8 +99,10 @@ function _internalExecute (resolve, reject, task: Task, currentToken, currentCar
   }).then((jsonResponse) => {
     if (jsonResponse) {
       const responseCode = parseInt(jsonResponse.code)
-      if (responseCode !== 200) {
-        if (responseCode === 401 /** unauthorized */ && currentToken) { // the token is no longer valid, try to invalidate it
+      if (responseCode !== 200 || (jsonResponse.result.code === 50100 && currentToken && (jsonResponse.result.message && jsonResponse.result.message.search('Sie sind nicht angemeldet') >= 0))) {
+        if ((responseCode === 401 /** unauthorized */ && currentToken) ||
+          (responseCode === 500 && currentToken && (jsonResponse.result.search('401') >= 0)) ||
+          (jsonResponse.result.code === 50100 && currentToken && (jsonResponse.result.message && jsonResponse.result.message.search('Sie sind nicht angemeldet') >= 0)) /** This is unauthorized on adn amp */) { // the token is no longer valid, try to invalidate it
           Logger.error('Invalid token - need to be revalidated' + currentToken + task.url + rootStore.state.userTokenInvalidateLock, 'sync')()
           silentMode = true
           if (config.users.autoRefreshTokens) {
@@ -146,7 +148,13 @@ function _internalExecute (resolve, reject, task: Task, currentToken, currentCar
           } else {
             Logger.info('Invalidation process is disabled (autoRefreshTokens is set to false)', 'sync')()
             rootStore.dispatch('user/logout', { silent: true })
-            EventBus.$emit('modal-show', 'modal-signup')
+            rootStore.dispatch('notification/spawnNotification', {
+              type: 'error',
+              message: i18n.t('Your session has expired. Please login again.'),
+              action1: { label: i18n.t('OK') }
+            })
+            // do not open modal for relogin
+            // EventBus.$emit('modal-show', 'modal-signup')
           }
         }
 

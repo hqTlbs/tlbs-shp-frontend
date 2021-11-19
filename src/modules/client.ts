@@ -22,6 +22,10 @@ import { SearchModule } from './search-module'
 // import { DeviceModule } from './device/index';
 import { registerModule } from '@vue-storefront/core/lib/modules'
 
+import { CheckoutTlbsModule } from './checkout-tlbs'
+import { UserTlbsModule } from './user-tlbs'
+// import { AddressBook } from './address-book'
+
 // TODO:distributed across proper pages BEFORE 1.11
 export function registerClientModules () {
   registerModule(UrlModule)
@@ -44,6 +48,12 @@ export function registerClientModules () {
   // registerModule(DeviceModule)
 
   registerModule(SearchModule)
+
+  /** TLBS MODULES */
+  registerModule(CheckoutTlbsModule)
+  registerModule(UserTlbsModule)
+  // registerModule(AddressBook)
+  /** TLBS MODULES */
 }
 
 // Deprecated API, will be removed in 2.0

@@ -6,7 +6,7 @@ import EventBus from '@vue-storefront/core/compatibility/plugins/event-bus'
 
 export const PaymentCashOnDeliveryModule: StorefrontModule = function ({ store }) {
   // Place the order. Payload is empty as we don't have any specific info to add for this payment method '{}'
-  let correctPaymentMethod = false
+  let correctPaymentMethod = true
   const placeOrder = () => {
     if (correctPaymentMethod) {
       EventBus.$emit('checkout-do-placeOrder', {})
